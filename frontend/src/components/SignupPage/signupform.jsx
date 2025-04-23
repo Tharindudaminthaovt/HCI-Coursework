@@ -1,10 +1,9 @@
-//signupform.jsx
-
 import React, { useState } from 'react';
+import './signupform.css';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
 
-export default function Signup() {
+export default function SignupForm() {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -15,16 +14,13 @@ export default function Signup() {
 
   const [message, setMessage] = useState('');
 
-  // Regex for password validation
   const passwordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$/;
 
-  // Handle input change
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Validate form inputs
   const validateForm = () => {
     if (!formData.firstName.trim()) {
       setMessage('First Name is required.');
@@ -39,7 +35,7 @@ export default function Signup() {
       return false;
     }
     if (!passwordRegex.test(formData.password)) {
-      setMessage('Password must be at least 8 characters long, with at least one number and one symbol.');
+      setMessage('Password must be at least 8 characters, including a number and a symbol.');
       return false;
     }
     if (formData.password !== formData.confirmPassword) {
@@ -49,11 +45,8 @@ export default function Signup() {
     return true;
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent default form submission behavior
-
-    // Validate the form
+    e.preventDefault();
     if (!validateForm()) return;
 
     try {
@@ -75,97 +68,68 @@ export default function Signup() {
         });
       }
     } catch (error) {
-      if (error.response) {
-        setMessage(error.response.data.message || 'Signup failed!');
-      } else {
-        setMessage('Network error. Please try again.');
-      }
+      setMessage(error.response?.data?.message || 'Signup failed!');
     }
   };
 
   return (
-    <div>
-      <h1>Create Account</h1>
-      <p>
-        Already have an account?{' '}
+    <div className="container">
+      <div className="signup-left">
+        <h2>Welcome Back!</h2>
+        <p>To keep connected with us please<br />Login with your Personal Information</p>
         <Link to="/login">
-          Login
+          <button className="ghost-button">Sign in</button>
         </Link>
-      </p>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <div>
-            <div>
-              <label>First Name</label>
-              <input
-                type="text"
-                name="firstName"
-                value={formData.firstName}
-                onChange={handleInputChange}
-                placeholder="First name"
-                required
-              />
-            </div>
-            <div className="flex-1">
-              <label >Last Name</label>
-              <input
-                type="text"
-                name="lastName"
-                value={formData.lastName}
-                onChange={handleInputChange}
-                placeholder="Last name"
-                required
-              />
-            </div>
-          </div>
-
-          <div className="mt-3">
-            <label>Email</label>
+      </div>
+      <div className="signup-right">
+        <h1>Sign up</h1>
+        <form className="signup-form" onSubmit={handleSubmit}>
+          <div className="input-row">
             <input
-              type="email"
-              name="email"
-              value={formData.email}
+              type="text"
+              name="firstName"
+              placeholder="First Name"
+              value={formData.firstName}
               onChange={handleInputChange}
-              placeholder="Email"
+              required
+            />
+            <input
+              type="text"
+              name="lastName"
+              placeholder="Last Name"
+              value={formData.lastName}
+              onChange={handleInputChange}
               required
             />
           </div>
-          <div className="mt-3">
-            <label>Password</label>
-            <input
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleInputChange}
-              placeholder="Password"
-              required
-            />
-          </div>
-          <div className="mt-3">
-            <label>Confirm Password</label>
-            <input
-              type="password"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleInputChange}
-              placeholder="Confirm password"
-              required
-            />
-          </div>
-          <div>
-            <button
-              type="submit"
-              style={{ backgroundColor: '#018ABD' }}
-              onMouseEnter={(e) => (e.target.style.backgroundColor = '#004581')}
-              onMouseLeave={(e) => (e.target.style.backgroundColor = '#018ABD')}
-            >
-              Create Account
-            </button>
-          </div>
-        </div>
-      </form>
-      {message && <p>{message}</p>}
+          <input
+            type="emails"
+            name="email"
+            placeholder="E-mail"
+            value={formData.email}
+            onChange={handleInputChange}
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={formData.password}
+            onChange={handleInputChange}
+            required
+          />
+          <input
+            type="password"
+            name="confirmPassword"
+            placeholder="Confirm Password"
+            value={formData.confirmPassword}
+            onChange={handleInputChange}
+            required
+          />
+          <button type="submit" className="solid-button">Sign up</button>
+        </form>
+        {message && <p className="message">{message}</p>}
+      </div>
     </div>
   );
 }
-
