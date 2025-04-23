@@ -1,11 +1,6 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-body {
-  background-color: #DDE8F0;
-}
 
 /* Custom animation for the slideshow */
 @keyframes slider {
@@ -18,10 +13,4 @@ body {
   66.1%, 100% {
     transform: translateX(-200%);
   }
-}
-
-/* Utility class for the slideshow animation */
-.animate-slider {
-  display: flex; /* To make images inline */
-  animation: slider 15s infinite; /* Animation with infinite loop */
 }
