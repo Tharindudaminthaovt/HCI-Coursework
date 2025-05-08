@@ -17,15 +17,6 @@ const authenticate = (req, res, next) => {
   }
 };
 
-const isAdmin = (req, res, next) => {
-  if (!req.user || req.user.role !== 'admin') {
-    return res.status(403).json({ message: 'Access denied: Admin privileges required' });
-  }
-  
-  next();
-};
-
 module.exports = {
-  authenticate,
-  isAdmin
+  authenticate
 };

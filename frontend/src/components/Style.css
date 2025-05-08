@@ -1,0 +1,150 @@
+.admin-dashboard {
+  display: flex;
+  font-family: "Georgia", serif;
+  height: 100vh;
+  background: #46523c;
+}
+
+.sidebar {
+  width: 240px;
+  background-color: #46523c;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-link-dashboard .icon {
+  font-size: 18px;
+  color: white;
+  margin-left: 81px;
+  margin-bottom: 15px;
+  vertical-align: middle;
+}
+
+.sidebar .logo {
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 30px;
+  margin-left: -10px;
+  letter-spacing: 2px;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.nav-links-dashboard {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-left: -10px;
+  gap: 15px;
+}
+
+.nav-link-dashboard {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  padding: 10px 15px;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+.nav-link-dashboard:hover {
+  background-color: #62714d;
+}
+
+.nav-link-dashboard.active {
+  background-color: white;
+  color: #000000;
+}
+
+.main-content {
+  flex: 1;
+  padding: 40px;
+  background-color: #faedcd;
+  border-radius: 40px 0 0 40px;
+  position: relative;
+}
+
+.logout-btn-container {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+}
+
+.logout-btn-container .logout-btn {
+  background-color: #46523c;
+  color: white;
+  padding: 15px 40px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.dashboard-content {
+  margin-top: 100px;
+  text-align: center;
+  border-radius: 10px;
+  padding: 30px;
+  background-color: rgb(255, 255, 255);
+}
+
+.dashboard-content h1 {
+  font-size: 45px;
+  margin-bottom: 30px;
+  color: #000;
+}
+
+.dashboard-content p {
+  font-size: 17px;
+  color: #5a5a5a;
+  margin-bottom: 60px;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
+}
+
+.dashboard-card {
+  background-color: #535c45;
+  color: white;
+  padding: 30px 40px;
+  border-radius: 10px;
+  width: 350px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.dashboard-card h2 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.dashboard-card p {
+  font-size: 14px;
+  font-style: italic;
+  text-align: left;
+  color: #e9edc9;
+  margin-bottom: 20px;
+}
+
+.view-btn {
+  background-color: #e8edc9;
+  color: #333;
+  padding: 13px 110px;
+  border: none;
+  font-size: 17px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.view-btn:hover {
+  background-color: #d1dbb1;
+}
