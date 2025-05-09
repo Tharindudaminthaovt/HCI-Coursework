@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 const roomDesignSchema = new mongoose.Schema(
   {
     name: { 
@@ -8,16 +9,15 @@ const roomDesignSchema = new mongoose.Schema(
     },
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Admin',
+      ref: 'User',
       required: true
     },
     dimensions: {
       width: { type: Number, required: true },
       length: { type: Number, required: true },
       height: { type: Number, required: true },
-      // Additional dimensions for L-shaped rooms
-      secondWidth: { type: Number }, // Only required for L-shaped rooms
-      secondLength: { type: Number }, // Only required for L-shaped rooms
+      secondWidth: { type: Number },
+      secondLength: { type: Number },
     },
     shape: { 
       type: String, 
@@ -61,7 +61,7 @@ const roomDesignSchema = new mongoose.Schema(
     },
     preview2DUrl: String,
     preview3DUrl: String,
-    // New rating field
+    // Rating field
     ratings: [{
       userId: {
         type: mongoose.Schema.Types.ObjectId,
@@ -87,11 +87,10 @@ const roomDesignSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// Pre-save middleware to calculate average rating
 roomDesignSchema.pre('save', function(next) {
   if (this.ratings && this.ratings.length > 0) {
     const sum = this.ratings.reduce((total, rating) => total + rating.value, 0);
-    this.averageRating = Math.round((sum / this.ratings.length) * 10) / 10; // Round to 1 decimal place
+    this.averageRating = Math.round((sum / this.ratings.length) * 10) / 10;
   } else {
     this.averageRating = 0;
   }
@@ -99,4 +98,5 @@ roomDesignSchema.pre('save', function(next) {
 });
 
 const RoomDesign = mongoose.model('RoomDesign', roomDesignSchema);
+
 module.exports = RoomDesign;

@@ -1,8 +1,7 @@
-//signupform.jsx
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
+import './signupform.css';
 
 export default function Signup() {
   const [formData, setFormData] = useState({
@@ -84,93 +83,63 @@ export default function Signup() {
   };
 
   return (
-    <div className="bg-white px-6 py-10 border-2 border-gray-200 w-full">
-      <h1 className="text-4xl font-sans font-bold text-[#004581]">Create Account</h1>
-      <p className="font-sans font-medium text-medium text-gray-500 mt-1">
-        Already have an account?{' '}
-        <Link to="/login" className="text-[#018ABD] hover:underline">
-          Login
+    <div className="container">
+      <div className="signup-left">
+        <h2>Welcome Back!</h2>
+        <p>To keep connected with us please<br />Login with your Personal Information</p>
+        <Link to="/login">
+          <button className="ghost-button">Sign in</button>
         </Link>
-      </p>
-      <form onSubmit={handleSubmit}>
-        <div className="mt-8">
-          <div className="flex gap-2">
-            <div className="flex-1">
-              <label className="text-lg font-medium text-[#004581]">First Name</label>
-              <input
-                type="text"
-                name="firstName"
-                value={formData.firstName}
-                onChange={handleInputChange}
-                className="w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent"
-                placeholder="First name"
-                required
-              />
-            </div>
-            <div className="flex-1">
-              <label className="text-lg font-medium text-[#004581]">Last Name</label>
-              <input
-                type="text"
-                name="lastName"
-                value={formData.lastName}
-                onChange={handleInputChange}
-                className="w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent"
-                placeholder="Last name"
-                required
-              />
-            </div>
-          </div>
-
-          <div className="mt-3">
-            <label className="text-lg font-medium text-[#004581]">Email</label>
+      </div>
+      <div className="signup-right">
+        <h1>Sign up</h1>
+        <form className="signup-form" onSubmit={handleSubmit}>
+          <div className="input-row">
             <input
-              type="email"
-              name="email"
-              value={formData.email}
+              type="text"
+              name="firstName"
+              placeholder="First Name"
+              value={formData.firstName}
               onChange={handleInputChange}
-              className="w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent"
-              placeholder="Email"
+              required
+            />
+            <input
+              type="text"
+              name="lastName"
+              placeholder="Last Name"
+              value={formData.lastName}
+              onChange={handleInputChange}
               required
             />
           </div>
-          <div className="mt-3">
-            <label className="text-lg font-medium text-[#004581]">Password</label>
-            <input
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleInputChange}
-              className="w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent"
-              placeholder="Password"
-              required
-            />
-          </div>
-          <div className="mt-3">
-            <label className="text-lg font-medium text-[#004581]">Confirm Password</label>
-            <input
-              type="password"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleInputChange}
-              className="w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent"
-              placeholder="Confirm password"
-              required
-            />
-          </div>
-          <div className="mt-6 flex flex-col gap-y-2">
-            <button
-              type="submit"
-              className="group active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl text-white text-lg font-bold"
-              style={{ backgroundColor: '#018ABD' }}
-              onMouseEnter={(e) => (e.target.style.backgroundColor = '#004581')}
-              onMouseLeave={(e) => (e.target.style.backgroundColor = '#018ABD')}
-            >
-              Create Account
-            </button>
-          </div>
-        </div>
-      </form>
-      {message && <p className="mt-4 text-center text-red-500">{message}</p>}
+          <input
+            type="emails"
+            name="email"
+            placeholder="E-mail"
+            value={formData.email}
+            onChange={handleInputChange}
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={formData.password}
+            onChange={handleInputChange}
+            required
+          />
+          <input
+            type="password"
+            name="confirmPassword"
+            placeholder="Confirm Password"
+            value={formData.confirmPassword}
+            onChange={handleInputChange}
+            required
+          />
+          <button type="submit" className="solid-button">Sign up</button>
+        </form>
+        {message && <p className="message">{message}</p>}
+      </div>
     </div>
   );
 }

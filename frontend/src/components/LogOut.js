@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import {
   FaTachometerAlt,
   FaPlus,
@@ -39,13 +39,12 @@ const LogOut = () => {
           <h2>LOG OUT</h2>
           <p>Are you sure you want to log out</p>
           <div className="logout-buttons">
-            <a href="/dashboard">
-              <button className="cancel-btn">Cancel</button>
-            </a>
-            <br />
-            <a href="/login">
-              <button className="logout-btn">Log out</button>
-            </a>
+            <a href="/dashboard"><button className="cancel-btn" >
+              Cancel
+            </button></a><br />
+            <a href="/login"><button className="logout-btn" >
+              Log out
+            </button></a>
           </div>
         </div>
       </main>
